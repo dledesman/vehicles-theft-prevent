@@ -114,7 +114,7 @@ pendiente diagrama y descripcion
 
   *  API de Integración.- Será una aplicación diseñada para funcionar con recursos limitados y que será instalada en los dispositivos de monitoreo; cuya única responsabilidad será la de enviar los eventos capturados hacia el repositorio centralizado de la solución.
 
-  *  Gateway de Seguridad.- Con la finalidad de permitir que las entidades policiales puedan utilizar sus propios mecanismos de autenticación se prevee implementar un enfoque basa en federación de identidades y delegación de autorización.
+  *  Gateway de Seguridad.- Con la finalidad de permitir que las entidades policiales puedan utilizar sus propios mecanismos de autenticación se prevee implementar un enfoque basa en delegación de autorización.
 
   *  Broker de Mensajería.- La finalidad de este componentes es desacoplar la API de Integración con el resto del sistema y ademas soportar la alta transaccionalidad que van a agenerar el creciente número de dispositivos de monitoreo adscritos a la solución. 
   
@@ -130,17 +130,70 @@ pendiente diagrama y descripcion
 
 ## 5. Vista Estática 
   
-### 5.1 Diagrama de Contenedores
-
   ![Diagrama de contenedores](./imgs/contenedores.jpg "Diagrama de contenedores")
-
-### 5.2 Diagrama de Componentes
-
-
 
 ## 6. Vista Dinámica (Ejecución)
 
-pendiente diagrama y descripcion
+* API de Integración
+  ![API de Integración](./imgs/secuencia-api-integración.jpg "API de Integración")
+
+  <table border="1">
+    <th>Componente</th>
+    <th>Descripción</th>
+    <tr>
+        <td>Api de Integración<t/d>
+        <td>Aplicación responsable de enviar los eventos capturados y almacenados en los dispositivos de monitoreo hacia el repositorio centralizado de la solución.</td>
+    </tr>
+    <tr>
+        <td>Dispositivo de monitoreo<t/d>
+        <td>Equipos que monitorean el tránsito en las calles, cuentan con cámaras para la captura de las imágenes de los vehículos que transitan e internamente, cuenta con un componente que se encarga de reconocer las matrículas de los vehículos, esta información es almacenada en una base de datos SQLLite.</td>
+    </tr>
+    <tr>
+        <td>Gateway de Seguridad<t/d>
+        <td>Componente encargado de garantizar que el acceso a cada uno de los componentes de la solución se realice en un entorno seguro.</td>
+    </tr>
+    <tr>
+        <td>Broker de Mensajería<t/d>
+        <td>Permite recibir las datos publicados por la API de Integración instalada en cada dispositivo de monitoreo y entregar a los suscriptores para continuar con el proceso de almacenamiento.</td>
+    </tr>
+  </table>
+
+* Gateway de Seguridad
+  
+  ![Gateway de Seguridad](./imgs/secuencia-gateway-seguridad.jpg "Gateway de Seguridad")
+
+  <table border="1">
+    <th>Componente</th>
+    <th>Descripción</th>
+    <tr>
+        <td>Usuario</td>
+        <td>Funcionario de una de las Entidades Policiales que requiere realizar alguna acción en el sistema</td>
+    </tr>
+    <tr>
+        <td>Gateway de Autenticación</td>
+        <td>Punto de entrada de la solución, es responsable de autenticar y autorizar a los usuarios antes de permitirles acceder a los recursos protegidos</td>
+    </tr>
+    <tr>
+        <td>Proveedor de Identidades</td>
+        <td>Este componente actuará como intermediario entre el gateway de autenticación y los diferentes sistemas de autenticación de las entidades policiales</td>
+    </tr>
+    <tr>
+        <td>Adaptador de Seguridad</td>
+        <td>Para cada tipo de sistema de autenticación (LDAP, base de datos, servicio REST), se implementará un adaptador de autenticación específico. Estos adaptadores serán responsables de comunicarse con los sistemas de autenticación de las entidades policiales y verificar las credenciales de los usuarios</td>
+    </tr>
+    <tr>
+        <td>Sistema de Seguridad</td>
+        <td>Sistemas de Seguridad personalizado de cada entidad policial que será el encargado de validar las credenciales y/o mecanizmos de autenticación.</td>
+    </tr>
+  </table>
+
+* API de Transformación
+  
+* API de Consulta
+  
+* Aplicación SPA
+  
+* Herramienta de Análisis de Datos
 
 ## 7. Vista de Despliegue
 
@@ -156,7 +209,7 @@ pendiente diagrama y descripcion
  
 ### 8.1 Supuestos
 
-* Los dispositivos de monitoreo pueden almacenar localmente los eventos capturados hasta por 24 horas.
+* Los dispositivos de monitoreo pueden almacenar localmente en una base de datos SQLite los eventos capturados hasta por 24 horas, luego de este tiempo los eventos son eliinados para evitar saturar la capacidad de almacenamiento
   
 * Se contará con acceso a los dispositivos de monitoreo para la instalación de la API de Integración.
   
@@ -337,7 +390,7 @@ pendiente diagrama y descripcion
     </tr>
   </table>
 
-  Dado que la solución debe garantizar una alta escalabilidad y soportar el manejo de información heterogenia se recomienda utilizar **MongoDb** como repositorio de datos para el proyecto.
+  Dado que la solución debe garantizar una alta escalabilidad y soportar el manejo de información heterogenia se recomienda utilizar **MongoDb** en contenedores o DBaaS como repositorio de datos para el proyecto, garantizando una alta disponibilidad y escalabilidad.
 
   En cuanto al repositorio para imágenes y en concordancia con la decisión de desplegar la solución en AWS se propone utilizar **AWS S3**
 
