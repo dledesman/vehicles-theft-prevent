@@ -189,6 +189,33 @@ pendiente diagrama y descripcion
 
 * API de Transformación
   
+  ![API de Transformación](./imgs/secuencia-api-transformacion.jpg "API de Transformación")
+
+  <table border="1">
+    <th>Componente</th>
+    <th>Descripción</th>
+    <tr>
+        <td>Cola de Mensajes</td>
+        <td>El Servicio de Transformación recibe un mensaje con los eventos remitidos desde un dispositivo de monitoreo a la cola de mensajes.</td>
+    </tr>
+    <tr>
+        <td>API de Transformación</td>
+        <td>El Servicio de Transformación es el componente principal que coordina el procesamiento del mensaje.</td>
+    </tr>
+    <tr>
+        <td>Validador de Datos</td>
+        <td>El Servicio de Transformación envía los datos del mensaje al Validador de Datos para verificar que cumplan con los requisitos definidos.</td>
+    </tr>
+    <tr>
+        <td>Almacenamiento NoSQL</td>
+        <td>Repositorio de almacenamiento NoSQl que contendrá la información general de las visualizaciones.</td>
+    </tr>
+    <tr>
+        <td>Almacenamiento de Imágenes</td>
+        <td>Repositorio de imágenes que contendrá las fotografías de las visualizaciones.</td>
+    </tr>
+  </table>
+
 * API de Consulta
   
 * Aplicación SPA
