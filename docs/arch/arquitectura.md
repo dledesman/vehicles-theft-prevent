@@ -1,4 +1,4 @@
-# Deficinición de Arquitectura del Sistema para Combatir el Hurto de Vehículos
+# Definición de Arquitectura del Sistema para Combatir el Hurto de Vehículos
 
 [[_TOC_]]
 
@@ -225,7 +225,7 @@ pendiente diagrama y descripcion
     <th>Descripción</th>
     <tr>
       <td>Usuario</td>
-      <td>El Usuario (una entidad policial) envía una solicitud de consulta a la API de Consulta.</td>
+      <td>El Usuario (entidad policial) envía una solicitud de consulta a la API de Consulta.</td>
     </tr>
     <tr>
       <td>Apliación SPA</td>
@@ -255,6 +255,33 @@ pendiente diagrama y descripcion
   
 * Herramienta de Análisis de Datos
 
+  ![Analisis de datos](./imgs/secuencia-analisis-datos.jpg "Analisis de datos")
+
+  <table border=""1>
+    <th>Componente</th>
+    <th>Descripción</th>
+    <tr>
+      <td>Usuario</td>
+      <td>El Usuario (entidad policial) envía una petición de visualización.</td>
+    </tr>
+    <tr>
+      <td>Kibana</td>
+      <td>Kibana recibe la solicitud del usuario y consulta los datos agregados en Elasticsearch.</td>
+    </tr>
+    <tr>
+      <td>Elasticsearch</td>
+      <td>Elasticsearch busca y agrega los datos solicitados en sus índices y devuelve los datos agregados a Kiban</td>
+    </tr>
+    <tr>
+      <td>Logstash</td>
+      <td>Logstash transforma y carga los datos en Elasticsearch.</td>
+    </tr>
+    <tr>
+      <td>Almacenamiento NoSQL</td>
+      <td>envía los datos de las visualizaciones a Logstash de forma periódica.</td>
+    </tr>
+  </table>
+  
 ## 7. Vista de Despliegue
 
 ## 8. Aspectos Transversales
