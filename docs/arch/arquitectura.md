@@ -218,7 +218,40 @@ pendiente diagrama y descripcion
 
 * API de Consulta
   
-* Aplicación SPA
+  ![API de Consulta](./imgs/secuencia-api-consulta.jpg "API de Consulta")
+
+  <table border="1">
+    <th>Componente</th>
+    <th>Descripción</th>
+    <tr>
+      <td>Usuario</td>
+      <td>El Usuario (una entidad policial) envía una solicitud de consulta a la API de Consulta.</td>
+    </tr>
+    <tr>
+      <td>Apliación SPA</td>
+      <td>La Aplicación SPA es el punto de entrada para las consultas.</td>
+    </tr>
+    <tr>
+      <td>Gateway de Seguridad</td>
+      <td>Su responsabilidad es garantizar que las consultas se realicen en un entorno seguro.</td>
+    </tr>
+    <tr>
+      <td>API de Consulta</td>
+      <td>Se encarga de coordinar las consulta de información de un vehículo.</td>
+    </tr>
+    <tr>
+      <td>Servicio de Consulta</td>
+      <td>Procesa las solictudes de consulta de datos e imágenes.</td>
+    </tr>
+    <tr>
+      <td>Almacenamiento NoSQL</td>
+      <td>Devuelve los datos de las visualizaciones de un vehículo.</td>
+    </tr>
+    <tr>
+      <td>Almacenamiento de imágenes</td>
+      <td>Devuelve las fotos de las visualizaciones de un vehículo.</td>
+    </tr>
+  </table>
   
 * Herramienta de Análisis de Datos
 
