@@ -106,7 +106,58 @@ El prinicipal objetivo de la solución es almacenar y gestionar la información 
 
 ### 3.2. Contexto Técnico
 
-pendiente diagrama y descripcion
+![Contexto Técnico](./imgs/contexto-tecnico.jpg "Contexto Técnico")
+
+<table border="1">
+    <th>Actor</th>
+    <th>Entradas</th>
+    <th>Salidas</th>
+    <tr>
+        <td>Dispositivos de monitoreo</td>
+        <td>Visualizaciones de vehículos</td>
+        <td>Eventos de visualizaciones</td>
+    </tr>
+    <tr>
+        <td>Broker de mensajería</td>
+        <td>Mensaje con de publicador</td>
+        <td>Entrega mensaje a subscriptor</td>
+    </tr>
+    <tr>
+        <td>Api de transformación</td>
+        <td>Mensaje de eventos de visualización</td>
+        <td>Datos e imágenes de visualizaciones</td>
+    </tr>
+    <tr>
+        <td>Almacenamiento de datos</td>
+        <td>Datos de visualizaciones</td>
+        <td>Confirmación de registros</td>
+    </tr>
+    <tr>
+        <td>Almacenamiento de imágenes</td>
+        <td>Imágenes de visualizaciones</td>
+        <td>Confirmación de guardado</td>
+    </tr>
+    <tr>
+        <td>Aplicación SPA</td>
+        <td>Solicitud de consulta de usuario</td>
+        <td>Respuesta a la solicitud</td>
+    </tr>
+    <tr>
+        <td>API Gateway</td>
+        <td>Llamada a función Lamnda</td>
+        <td>Respuesta de petición</td>
+    </tr>
+    <tr>
+        <td>API de Consulta</td>
+        <td>Consulta de datos e imágenes por ID de vehículo</td>
+        <td>Respuesta con información solicitada</td>
+    </tr>
+    <tr>
+        <td>Herramienta de análisis</td>
+        <td>Solicitud de visualizaciones por filtros</td>
+        <td>Información solicitada</td>
+    </tr>
+</table>
 
 ## 4. Estrategia de Solución
 
@@ -135,6 +186,7 @@ pendiente diagrama y descripcion
 ## 6. Vista Dinámica (Ejecución)
 
 * API de Integración
+  
   ![API de Integración](./imgs/secuencia-api-integración.jpg "API de Integración")
 
   <table border="1">
@@ -281,7 +333,7 @@ pendiente diagrama y descripcion
       <td>envía los datos de las visualizaciones a Logstash de forma periódica.</td>
     </tr>
   </table>
-  
+
 ## 7. Vista de Despliegue
 
 ## 8. Aspectos Transversales
